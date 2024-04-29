@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+ASDF_LOCAL_HOME=/tmp/asdf-tunel-cli
+ASDF_DOWNLOAD_PATH=${ASDF_DOWNLOAD_PATH:=$ASDF_LOCAL_HOME/download}
+ASDF_INSTALL_PATH=${ASDF_INSTALL_PATH:=$ASDF_LOCAL_HOME/install}
+ASDF_INSTALL_VERSION=${ASDF_INSTALL_VERSION:=main}
+rm -fr $ASDF_LOCAL_HOME
+mkdir -p ${ASDF_DOWNLOAD_PATH}
+cd ${ASDF_DOWNLOAD_PATH}
+git clone https://github.com/YeicoCom/tunel_cli.git
+cd tunel_cli
+git checkout ${ASDF_INSTALL_VERSION}
+mkdir -p ${ASDF_INSTALL_PATH}
+cp -fr bin $ASDF_INSTALL_PATH/
+rm -fr ${ASDF_DOWNLOAD_PATH}/tunel_cli
